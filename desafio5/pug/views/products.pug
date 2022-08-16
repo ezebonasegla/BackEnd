@@ -1,0 +1,34 @@
+html
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title='test pug'
+        link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+    body
+        header
+            div.container.mt-3
+                h1="listado de productos"
+        main
+            div.container.mt-3
+                if productsExist
+                    div.table-responsive
+                        table.table.table-dark
+                            thead
+                                tr
+                                    th#title
+                                    th#price
+                                    th#thumbnail
+                            tbody
+                                each product in products
+                                    tr
+                                        td#name=product.title
+                                        td#price=product.price
+                                        td#thumbnail
+                                            img(src=product.thumbnail style="width: 4rem;")
+                else
+                    p.alert.alert-danger="No hay productos"
+        footer
+            div.container.mt-3
+                a(href='/form')
+                    ="Agregar producto"
