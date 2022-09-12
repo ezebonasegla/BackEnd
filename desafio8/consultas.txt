@@ -1,0 +1,241 @@
+C:\Users\Administrador>mongo
+MongoDB shell version v4.4.16
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("da980e5c-d2b5-4551-a5ab-409c9b09833b") }
+MongoDB server version: 4.4.16
+---
+The server generated these startup warnings when booting:
+        2022-09-12T16:30:24.281-03:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+        2022-09-12T16:30:24.281-03:00: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use ecommerce
+switched to db ecommerce
+> db.createCollection("productos")
+{ "ok" : 1 }
+> db.productos.insertMany( [
+...     {
+...         "title": "Bufanda",
+...         "price": 600,
+...         "thumbnail": "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/bufanda.png?alt=media&token=088f8c1f-66af-4d25-b3b3-4ee3d0a013c9"
+...     },
+...     {
+...         "title": "Bolso",
+...         "price": 3500,
+...         "thumbnail": "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/bolso.png?alt=media&token=f60cbca6-db5c-40f9-ae5a-b00ac1778a09"
+...     },
+...     {
+...         "title": "Calcetin",
+...         "price": 150,
+...         "thumbnail": "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/calcetin.png?alt=media&token=3b770faf-a460-4a54-b0bb-53895e6905a4"
+...     },
+...     {
+...         "title": "Cinturon",
+...         "price": 500,
+...         "thumbnail": "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/cinturon.png?alt=media&token=e416e186-a940-486b-9e2b-ee66e6db68cb"
+...     },
+...     {
+...         "title": "Crocs",
+...         "price": 5000,
+...         "thumbnail": "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/crocs.png?alt=media&token=063fd939-47cb-434f-8d25-1606248e177c"
+...     },
+...     {
+...         "title": "Remera",
+...         "price": 1200,
+...         "thumbnail": "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/remera.png?alt=media&token=26189072-e99a-42e7-8b5e-c67d02284162"
+...     },
+...     {
+...         "title": "Zapato Mujer",
+...         "price": 4000,
+...         "thumbnail": "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/zapato_mujer.png?alt=media&token=e43f88fa-0f02-4b28-a6f4-6c5a0ddaec84"
+...     },
+...     {
+...         "title": "Parka",
+...         "price": 3800,
+...         "thumbnail": "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/parka.png?alt=media&token=0c52e8cb-876e-4b87-a15a-85415caa0246"
+...     },
+...     {
+...         "title": "Camisa Polo",
+...         "price": 4000,
+...         "thumbnail": "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/camisapolo.png?alt=media&token=ec7fc816-0bb8-4abf-bcbd-3ef36c61c1a2"
+...     },
+...     {
+...         "title": "Mascara",
+...         "price": 200,
+...         "thumbnail": "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/mascara.png?alt=media&token=6711c24d-aa80-45c4-9515-a273753ddd01"
+...     }
+... ])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("631f9081dd92b39946efd5f2"),
+                ObjectId("631f9081dd92b39946efd5f3"),
+                ObjectId("631f9081dd92b39946efd5f4"),
+                ObjectId("631f9081dd92b39946efd5f5"),
+                ObjectId("631f9081dd92b39946efd5f6"),
+                ObjectId("631f9081dd92b39946efd5f7"),
+                ObjectId("631f9081dd92b39946efd5f8"),
+                ObjectId("631f9081dd92b39946efd5f9"),
+                ObjectId("631f9081dd92b39946efd5fa"),
+                ObjectId("631f9081dd92b39946efd5fb")
+        ]
+}
+> db.mensajes.insertMany ( [
+...     {
+...         "email": "prueba0@gmail.com",
+...         "message": "Holaa",
+...         "date": "23/08/2022 3:33:32"
+...     },
+...     {
+...         "email": "prueba1@hotmail.com",
+...         "message": "Hola",
+...         "date": "23/08/2022 3:33:50"
+...     },
+...     {
+...         "email": "prueba2@yahoo.com",
+...         "message": "Que onda?",
+...         "date": "23/08/2022 3:36:37"
+...     },
+...     {
+...         "email": "prueba0@gmail.com",
+...         "message": "Jugamos algo?",
+...         "date": "23/08/2022 3:43:32"
+...     },
+...     {
+...         "email": "prueba1@hotmail.com",
+...         "message": "Perfecto",
+...         "date": "23/08/2022 3:43:50"
+...     },
+...     {
+...         "email": "prueba2@yahoo.com",
+...         "message": "Me gusta",
+...         "date": "23/08/2022 3:46:37"
+...     },
+...     {
+...         "email": "prueba0@gmail.com",
+...         "message": "Ahi creo la partida",
+...         "date": "23/08/2022 3:53:32"
+...     },
+...     {
+...         "email": "prueba1@hotmail.com",
+...         "message": "Joya",
+...         "date": "23/08/2022 3:53:50"
+...     },
+...     {
+...         "email": "prueba2@yahoo.com",
+...         "message": "Entrando",
+...         "date": "23/08/2022 3:56:37"
+...     },{
+...         "email": "prueba0@gmail.com",
+...         "message": "Listo",
+...         "date": "23/08/2022 3:58:32"
+...     }
+... ])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("631f90bddd92b39946efd5fc"),
+                ObjectId("631f90bddd92b39946efd5fd"),
+                ObjectId("631f90bddd92b39946efd5fe"),
+                ObjectId("631f90bddd92b39946efd5ff"),
+                ObjectId("631f90bddd92b39946efd600"),
+                ObjectId("631f90bddd92b39946efd601"),
+                ObjectId("631f90bddd92b39946efd602"),
+                ObjectId("631f90bddd92b39946efd603"),
+                ObjectId("631f90bddd92b39946efd604"),
+                ObjectId("631f90bddd92b39946efd605")
+        ]
+}
+> db.productos.find()
+{ "_id" : ObjectId("631f9081dd92b39946efd5f2"), "title" : "Bufanda", "price" : 600, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/bufanda.png?alt=media&token=088f8c1f-66af-4d25-b3b3-4ee3d0a013c9" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f3"), "title" : "Bolso", "price" : 3500, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/bolso.png?alt=media&token=f60cbca6-db5c-40f9-ae5a-b00ac1778a09" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f4"), "title" : "Calcetin", "price" : 150, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/calcetin.png?alt=media&token=3b770faf-a460-4a54-b0bb-53895e6905a4" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f5"), "title" : "Cinturon", "price" : 500, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/cinturon.png?alt=media&token=e416e186-a940-486b-9e2b-ee66e6db68cb" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f6"), "title" : "Crocs", "price" : 5000, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/crocs.png?alt=media&token=063fd939-47cb-434f-8d25-1606248e177c" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f7"), "title" : "Remera", "price" : 1200, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/remera.png?alt=media&token=26189072-e99a-42e7-8b5e-c67d02284162" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f8"), "title" : "Zapato Mujer", "price" : 4000, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/zapato_mujer.png?alt=media&token=e43f88fa-0f02-4b28-a6f4-6c5a0ddaec84" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f9"), "title" : "Parka", "price" : 3800, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/parka.png?alt=media&token=0c52e8cb-876e-4b87-a15a-85415caa0246" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5fa"), "title" : "Camisa Polo", "price" : 4000, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/camisapolo.png?alt=media&token=ec7fc816-0bb8-4abf-bcbd-3ef36c61c1a2" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5fb"), "title" : "Mascara", "price" : 200, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/mascara.png?alt=media&token=6711c24d-aa80-45c4-9515-a273753ddd01" }
+> db.mensajes.find()
+{ "_id" : ObjectId("631f90bddd92b39946efd5fc"), "email" : "prueba0@gmail.com", "message" : "Holaa", "date" : "23/08/2022 3:33:32" }
+{ "_id" : ObjectId("631f90bddd92b39946efd5fd"), "email" : "prueba1@hotmail.com", "message" : "Hola", "date" : "23/08/2022 3:33:50" }
+{ "_id" : ObjectId("631f90bddd92b39946efd5fe"), "email" : "prueba2@yahoo.com", "message" : "Que onda?", "date" : "23/08/2022 3:36:37" }
+{ "_id" : ObjectId("631f90bddd92b39946efd5ff"), "email" : "prueba0@gmail.com", "message" : "Jugamos algo?", "date" : "23/08/2022 3:43:32" }
+{ "_id" : ObjectId("631f90bddd92b39946efd600"), "email" : "prueba1@hotmail.com", "message" : "Perfecto", "date" : "23/08/2022 3:43:50" }
+{ "_id" : ObjectId("631f90bddd92b39946efd601"), "email" : "prueba2@yahoo.com", "message" : "Me gusta", "date" : "23/08/2022 3:46:37" }
+{ "_id" : ObjectId("631f90bddd92b39946efd602"), "email" : "prueba0@gmail.com", "message" : "Ahi creo la partida", "date" : "23/08/2022 3:53:32" }
+{ "_id" : ObjectId("631f90bddd92b39946efd603"), "email" : "prueba1@hotmail.com", "message" : "Joya", "date" : "23/08/2022 3:53:50" }
+{ "_id" : ObjectId("631f90bddd92b39946efd604"), "email" : "prueba2@yahoo.com", "message" : "Entrando", "date" : "23/08/2022 3:56:37" }
+{ "_id" : ObjectId("631f90bddd92b39946efd605"), "email" : "prueba0@gmail.com", "message" : "Listo", "date" : "23/08/2022 3:58:32" }
+> db.mensajes.estimatedDocumentCount()
+10
+> db.productos.estimatedDocumentCount()
+10
+> db.productos.insertOne ( {title: "Sombrero", price: 2000, thumbnail: "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/sombrero.png?alt=media&token=757aaf3e-3d02-4171-aa08-70f52fc52afa"} )
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("631f928fdd92b39946efd606")
+}
+> db.productos.find( {title: "Sombrero"})
+{ "_id" : ObjectId("631f928fdd92b39946efd606"), "title" : "Sombrero", "price" : 2000, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/sombrero.png?alt=media&token=757aaf3e-3d02-4171-aa08-70f52fc52afa" }
+> db.productos.find( {price: {$lt: 1000}})
+{ "_id" : ObjectId("631f9081dd92b39946efd5f2"), "title" : "Bufanda", "price" : 600, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/bufanda.png?alt=media&token=088f8c1f-66af-4d25-b3b3-4ee3d0a013c9" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f4"), "title" : "Calcetin", "price" : 150, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/calcetin.png?alt=media&token=3b770faf-a460-4a54-b0bb-53895e6905a4" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f5"), "title" : "Cinturon", "price" : 500, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/cinturon.png?alt=media&token=e416e186-a940-486b-9e2b-ee66e6db68cb" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5fb"), "title" : "Mascara", "price" : 200, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/mascara.png?alt=media&token=6711c24d-aa80-45c4-9515-a273753ddd01" }
+> db.productos.find( {price: {$gte: 1000, $lte:3000}})
+{ "_id" : ObjectId("631f9081dd92b39946efd5f7"), "title" : "Remera", "price" : 1200, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/remera.png?alt=media&token=26189072-e99a-42e7-8b5e-c67d02284162" }
+{ "_id" : ObjectId("631f928fdd92b39946efd606"), "title" : "Sombrero", "price" : 2000, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/sombrero.png?alt=media&token=757aaf3e-3d02-4171-aa08-70f52fc52afa" }
+> db.productos.find( {price: {$gt: 3000}})
+{ "_id" : ObjectId("631f9081dd92b39946efd5f3"), "title" : "Bolso", "price" : 3500, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/bolso.png?alt=media&token=f60cbca6-db5c-40f9-ae5a-b00ac1778a09" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f6"), "title" : "Crocs", "price" : 5000, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/crocs.png?alt=media&token=063fd939-47cb-434f-8d25-1606248e177c" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f8"), "title" : "Zapato Mujer", "price" : 4000, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/zapato_mujer.png?alt=media&token=e43f88fa-0f02-4b28-a6f4-6c5a0ddaec84" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5f9"), "title" : "Parka", "price" : 3800, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/parka.png?alt=media&token=0c52e8cb-876e-4b87-a15a-85415caa0246" }
+{ "_id" : ObjectId("631f9081dd92b39946efd5fa"), "title" : "Camisa Polo", "price" : 4000, "thumbnail" : "https://firebasestorage.googleapis.com/v0/b/bonadrinks.appspot.com/o/camisapolo.png?alt=media&token=ec7fc816-0bb8-4abf-bcbd-3ef36c61c1a2" }
+> db.productos.find({}, {"title":1, "_id":0}).skip(2).limit(1).sort({price: 1})
+{ "title" : "Cinturon" }
+> db.productos.updateMany({stock: {$exists: false}}, {$set: {stock: 100}})
+{ "acknowledged" : true, "matchedCount" : 11, "modifiedCount" : 11 }
+> db.productos.updateMany({price: {$gt: 4000}}, {$set: {stock:0}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.productos.find({}, {"title":1, "price":1, "stock":1, "_id":0})
+{ "title" : "Bufanda", "price" : 600, "stock" : 100 }
+{ "title" : "Bolso", "price" : 3500, "stock" : 100 }
+{ "title" : "Calcetin", "price" : 150, "stock" : 100 }
+{ "title" : "Cinturon", "price" : 500, "stock" : 100 }
+{ "title" : "Crocs", "price" : 5000, "stock" : 0 }
+{ "title" : "Remera", "price" : 1200, "stock" : 100 }
+{ "title" : "Zapato Mujer", "price" : 4000, "stock" : 100 }
+{ "title" : "Parka", "price" : 3800, "stock" : 100 }
+{ "title" : "Camisa Polo", "price" : 4000, "stock" : 100 }
+{ "title" : "Mascara", "price" : 200, "stock" : 100 }
+{ "title" : "Sombrero", "price" : 2000, "stock" : 100 }
+> db.productos.deleteMany({price: {$lt: 1000}})
+{ "acknowledged" : true, "deletedCount" : 4 }
+> db.createUser({user: "pepe", pwd: "asd456", roles: [ { role: "read", db: "ecommerce"}]})
+Successfully added user: {
+        "user" : "pepe",
+        "roles" : [
+                {
+                        "role" : "read",
+                        "db" : "ecommerce"
+                }
+        ]
+}
+> exit
+bye
