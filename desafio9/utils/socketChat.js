@@ -1,12 +1,11 @@
-import { MessagesController } from "../controllers/messages.controller.js";
+import { addMessage, getMessages } from "../controllers/messages.controller.js";
 
 export const chat = (socket, io) => {
   //-----------------------------------------------Chat
-  const messages = new MessagesController();
   //Muestro mensajes al entrar a la chat
   //-----------------------------------------------
   (async function () {
-    const chats = await messages.getAll();
+    const chats = await getMessages();
     io.sockets.emit("messages", [chats.normalizedPosts, chats.compresion]);
   })();
   //-----------------------------------------------
@@ -16,9 +15,9 @@ export const chat = (socket, io) => {
   socket.on("newMessage", (mensajeDelCliente) => {
     const mensajeDelClienteObjet = JSON.parse(mensajeDelCliente);
     (async function (mensajeDelClienteObjet) {
-      await messages.addMessage(mensajeDelClienteObjet);
+      await addMessage(mensajeDelClienteObjet);
       (async function () {
-        const mensajes = await messages.getAll();
+        const mensajes = await getMessages();
         io.sockets.emit("messages", mensajes);
       })();
     })(mensajeDelClienteObjet);

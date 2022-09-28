@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------------------------------------
-//-----------------------------Base de datos para productos y mensajes (mongoDB-mongoose)-----------------------------
+//-----------------------------Base de datos (mongoDB-mongoose)-----------------------------
 //---------------------------------------------------------------------------------------------------------
 
 import { connect } from "mongoose";
@@ -19,7 +19,7 @@ const db = await connectMG();
 if (!db) throw "can not connect to the db";
 
 //---------------------------------------------------------------------------------------------------------
-//----------------------------------Base de datos para carritos (Firebase)---------------------------------
+//----------------------------------Base de datos (Firebase)---------------------------------
 //---------------------------------------------------------------------------------------------------------
 
 import admin from "firebase-admin";
@@ -39,6 +39,7 @@ export const firebaseConfig = {
 
 admin.initializeApp({
   credential: admin.credential.cert(firebaseConfig),
+  databaseURL: 'https://ecommerce-4b8f5.firebaseio.com'
 });
 
 export const dbFirebase = admin.firestore();

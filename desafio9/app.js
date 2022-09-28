@@ -30,12 +30,8 @@ app.get("/", (req, res) => {
 
 //Rutes Requires---------------------------------------------------
 import { router as apiFakeProductsRoutes } from "./routes/fakeProducts.routes.js";
-import { router as apiProductsRoutes } from "./routes/products.routes.js";
-import { router as apiCarritosRoutes } from "./routes/carritos.routes.js";
 //routes-------------------------------------------Rutes
 app.use("/api/productos-test", apiFakeProductsRoutes);
-app.use("/api/productos", apiProductsRoutes);
-app.use("/api/carritos", apiCarritosRoutes);
 
 //ruta 404
 app.all("*", (req, res) => {

@@ -1,7 +1,44 @@
-import { Mensaje } from "../models/messages.model.js";
 import { normalizeMensajes } from "../utils/normalizeData.js";
 
-export class MessagesController {
+import { MensajesDAOFirebase } from "../daos/mensajes/MensajesDAOFirebase.js";
+
+const storage = new MensajesDAOFirebase();
+
+export const getMessages = async () => {
+  try {
+    const mensajes = await storage.getAll();
+    return normalizeMensajes(mensajes);
+  } catch (error) {
+    console.log("Error al obtener los mensajes: ", error);
+  }
+};
+
+export const addMessage = async (Mssg) => {
+  try {
+    const mensaje = {
+      id: Math.random().toString(36).slice(2),
+      author: {
+        id: Mssg.author.id,
+        nombre: Mssg.author.nombre,
+        apellido: Mssg.author.apellido,
+        edad: Mssg.author.edad,
+        alias: Mssg.author.alias,
+        avatar: Mssg.author.avatar,
+      },
+      text: Mssg.text,
+      date: Mssg.date,
+    };
+    await storage.save(mensaje);
+  } catch (error) {
+    console.log("Error al agregar el mensaje: ", error);
+  }
+};
+
+
+
+
+
+/* export class MessagesController {
   constructor(archivo) {
     this.archivo = archivo;
   }
@@ -47,4 +84,4 @@ export class MessagesController {
       console.log("error en model: " + err);
     }
   }
-}
+} */
