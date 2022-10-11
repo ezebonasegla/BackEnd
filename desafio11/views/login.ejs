@@ -1,0 +1,17 @@
+<%- include('../public/header')%>
+<div class="container mt-3">
+    <div class="jumbotron">
+        <h1>Login de Usuario</h1>
+        <br>
+        <form action="/login" method="post" autocomplete="off">
+            <div class="form-group">
+                <label for="username">Ingrese su e-mail</label>
+                <input id="username" class="form-control" type="text" name="username" required>
+                <label for="nombre">Ingrese su contraseña</label>
+                <input id="password" class="form-control" type="password" name="password" required>
+            </div>
+            <button class="btn btn-success mt-3">Enviar</button>
+            <a href="/register" class="btn btn-primary mt-3">No tengo cuenta, quiero registrarme</a>
+        </form>
+    </div>
+</div>
