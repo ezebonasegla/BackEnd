@@ -7,8 +7,6 @@ import { desnormalizar } from "./funciones.js";
 
 //Socket Chat
 socket.on("messages", (chats) => {
-  const compresion = document.getElementById("compresion");
-  compresion.innerHTML = chats[1];
   const chatDesnormalizado = desnormalizar(chats[0]);
   const divMsj = document.getElementById("messages");
   const add = chatDesnormalizado.chats

@@ -4,6 +4,8 @@ import path from "path";
 
 import passport from "passport";
 
+import { checkNotAuth } from "../middlewares/auth.js";
+
 export const authWebRouter = new Router();
 
 authWebRouter.get('/', (req, res) => {
@@ -11,25 +13,18 @@ authWebRouter.get('/', (req, res) => {
 })
 
 
-authWebRouter.get("/login", (req, res) => {
-    if (req.isAuthenticated()) {
-        res.redirect("/home");
-    } else {
-        res.render("login");
-    }
+authWebRouter.get("/login", checkNotAuth, (req, res) => {
+    res.render("login");
 })
 
-authWebRouter.get("/register", (req, res) => {
-    if (req.isAuthenticated()) {
-        res.redirect('/home')
-    } else {
-        res.render(path.join(process.cwd(), '/views/register.ejs'))
-    }
+authWebRouter.get("/register", checkNotAuth, (req, res) => {
+    res.render(path.join(process.cwd(), '/views/register.ejs'))
 })
 
 authWebRouter.get('/logout', (req, res) => {
+    let username = req.user.username
     req.logout();
-    res.redirect('/login')
+    res.render('logout', {username})
 })
 
 authWebRouter.get('/failLogin', (req, res) => {
@@ -40,13 +35,21 @@ authWebRouter.get('/failRegister', (req, res) => {
     res.render(path.join(process.cwd(), '/views/failRegister.ejs'))
 })
 
+authWebRouter.get("/auth/twitter", passport.authenticate("twitter"));
+
+authWebRouter.get(
+    "/auth/twitter/callback",
+    passport.authenticate("twitter", {
+        successRedirect: "/home",
+        failureRedirect: "/failLogin",
+    })
+);
 
 authWebRouter.post(
     "/login",
     passport.authenticate("login", {
         successRedirect: "/home",
-        failureRedirect: "/failLogin",
-        failureFlash: true,
+        failureRedirect: "/failLogin"
     })
 );
 

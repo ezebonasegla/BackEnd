@@ -2,6 +2,7 @@ import express from "express";
 import session from "express-session";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
+import { Strategy as TwitterStrategy } from "passport-twitter";
 import { isValidPassword } from "./utils/bcrypt.js";
 
 import { fileURLToPath } from "url";
@@ -44,6 +45,25 @@ app.set("view engine", "ejs");
 
 
 //Passport
+passport.use(
+  new TwitterStrategy(
+    {
+      consumerKey: "vTbYKvWvbMoK2KB9JUO8viO5C",
+      consumerSecret: "CE2c92CyXFMyG1WPd6zE2gkLTjbMRus2ylqL4mPzxXKGvmYzwt",
+      callbackURL: "http://localhost:8080/auth/twitter/callback",
+    },
+    function (token, tokenSecret, profile, done) {
+      User.findOrCreate(
+        { twitterId: profile.id, username: profile.username },
+        (err, user) => {
+          if (err) return done(err);
+          return done(null, user);
+        }
+      );
+    }
+  )
+);
+
 passport.use(
   "login",
   new LocalStrategy((username, password, done) => {
@@ -104,8 +124,6 @@ passport.deserializeUser((id, done) => {
   User.findById(id, done);
 });
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 //Redis
 const client = redis.createClient({
@@ -117,18 +135,26 @@ const RedisStore = connectRedis(session);
 //Session
 app.use(
   session({
-  store: new RedisStore({ host: "localhost", port: 6379, client, ttl: 300 }),
-  secret: "keyboard cat",
-  resave: false,
-  saveUninitialized: false,
-  rolling: true,
-  cookie: {
-    maxAge: 86400000,
-    httpOnly: false,
-    secure: false,
-  },
-})
+    store: new RedisStore({
+      host: "localhost",
+      port: 6379,
+      client,
+      ttl: 300
+    }),
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    rolling: true,
+    cookie: {
+      maxAge: 86400000,
+      httpOnly: false,
+      secure: false,
+    },
+  })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Routes
 app.use("/api/productos-test", apiFakeProductsRoutes);

@@ -1,12 +1,4 @@
-import { schema, normalize, denormalize } from "normalizr";
-import util from "util";
-
-//Calculo Compresion
-const calcularCompresion = (original, normalized) => {
-  const bitOriginal = util.inspect(original, false, 12, true).length;
-  const bitNormalized = util.inspect(normalized, true, 7, true).length;
-  return (bitNormalized * 100) / bitOriginal;
-};
+import { schema, normalize } from "normalizr";
 
 //Mapeo el array de mensajes armar el objeto con el formato que queremos y eliminar el object_id de mongoose
 const depurarChat = (msj) => {
@@ -34,12 +26,10 @@ export const normalizeMensajes = (msj) => {
   const chats = new schema.Entity("chats", { chats: [mensajes] });
   //
   const normalizedPosts = normalize(chatDepurado, chats);
-  const compresion = calcularCompresion(msj, normalizedPosts);
 
-  //Normalizo el chat, Calculo la compresion y retorno respuesta
+  //Normalizo el chat
   const respuesta = {
     normalizedPosts: normalizedPosts,
-    compresion: compresion,
   };
   return respuesta;
 };

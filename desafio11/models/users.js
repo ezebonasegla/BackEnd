@@ -5,15 +5,19 @@ import findOrCreate from 'mongoose-findorcreate';
 const userSchema = new Schema({
     username: {
         type: String,
-        required: true,
-        trim: true,
+        required: false,
         max: 100,
     },
     password: {
         type: String,
-        required: true,
+        required: false,
         max: 100,
-    }
+    },
+    twitterId: {
+        type: String,
+        required: false,
+        max: 100,
+    },
 });
 userSchema.plugin(findOrCreate);
 

@@ -6,7 +6,7 @@ export const chat = (socket, io) => {
   //-----------------------------------------------
   (async function () {
     const chats = await getMessages();
-    io.sockets.emit("messages", [chats.normalizedPosts, chats.compresion]);
+    io.sockets.emit("messages", [chats.normalizedPosts]);
   })();
   //-----------------------------------------------
 
