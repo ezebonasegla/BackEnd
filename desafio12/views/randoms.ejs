@@ -1,0 +1,26 @@
+<%- include('../public/header')%>
+
+<!-- titulo obtener numero randoms sin bloquear el servidor, ingresar cantidad de bucles y boton de generar -->
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12">
+            <h1>Obtener numeros randoms sin bloquear el servidor</h1>
+            <p>Ingrese cantidad de bucles y presione el boton de generar</p>
+            <form action="/api/randoms" method="POST">
+                <div class="form-group">
+                    <label for="cantidad">Cantidad de bucles</label>
+                    <input type="number" class="form-control" id="cantidad" name="cantidad" max="500000000"
+                        placeholder="Ingrese cantidad de bucles">
+                </div>
+                <button type="submit" class="btn btn-primary">Generar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('form').onsubmit = function () {
+        this.setAttribute('action', "/api/randoms?cant=" + document.querySelector('input[name=cantidad]').value)
+    }
+</script>
