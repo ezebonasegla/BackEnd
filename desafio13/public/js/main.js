@@ -1,5 +1,9 @@
+'use strict';
+const {
+  desnormalizar: desnormalizar
+} = require('./funciones.js');
+
 const socket = io();
-import { desnormalizar } from "./funciones.js";
 
 //-------------------------------------------------------------------------------
 //--------------------------------------Chat-------------------------------------
@@ -9,7 +13,7 @@ import { desnormalizar } from "./funciones.js";
 socket.on("messages", (chats) => {
   const chatDesnormalizado = desnormalizar(chats[0]);
   const divMsj = document.getElementById("messages");
-  const add = chatDesnormalizado.chats
+  divMsj.innerHTML = chatDesnormalizado.chats
     .map((chat) => {
       return `
     <p>
@@ -21,12 +25,11 @@ socket.on("messages", (chats) => {
     `;
     })
     .join(" ");
-  divMsj.innerHTML = add;
 });
 
 //Boton send msg
 const boton = document.getElementById("send");
-boton.addEventListener("click", (e) => {
+boton.addEventListener("click", () => {
   const id = document.getElementById("id").value;
   const nombre = document.getElementById("nombre").value;
   const apellido = document.getElementById("apellido").value;
@@ -64,16 +67,14 @@ fetch("http://localhost:8080/api/productos-test")
     return res.json();
   })
   .then((datos) => {
-    const add = datos
-      .map((dato) => {
-        return `<tr>
-    <td>${dato.nombre}</td>
-    <td>${dato.precio}</td>
-    <td>${dato.stock}</td>
-    <td><img src=${dato.foto} alt=${dato.nombre}></td>
-  </tr>`;
-      })
-      .join(" ");
-
-    tabla.innerHTML = add;
-  });
+  tabla.innerHTML = datos
+    .map((dato) => {
+      return `<tr>
+  <td>${dato.nombre}</td>
+  <td>${dato.precio}</td>
+  <td>${dato.stock}</td>
+  <td><img src=${dato.foto} alt=${dato.nombre}></td>
+</tr>`;
+    })
+    .join(" ");
+});

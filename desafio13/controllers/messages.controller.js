@@ -1,19 +1,24 @@
-import { normalizeMensajes } from "../utils/normalizeData.js";
+'use strict';
+const {
+  normalizeMensajes: normalizeMensajes
+} = require('../utils/normalizeData.js');
 
-import { MensajesDAOFirebase } from "../daos/mensajes/MensajesDAOFirebase.js";
+const {
+  MensajesDAOFirebase: MensajesDAOFirebase
+} = require('../daos/mensajes/MensajesDAOFirebase.js');
 
 const storage = new MensajesDAOFirebase();
 
-export const getMessages = async () => {
+module.exports.getMessages = async () => {
   try {
     const mensajes = await storage.getAll();
     return normalizeMensajes(mensajes);
   } catch (error) {
-    throw new Error(error);
+    throw Error(error);
   }
 };
 
-export const addMessage = async (Mssg) => {
+module.exports.addMessage = async (Mssg) => {
   try {
     const mensaje = {
       id: Math.random().toString(36).slice(2),
@@ -30,7 +35,7 @@ export const addMessage = async (Mssg) => {
     };
     await storage.save(mensaje);
   } catch (error) {
-    throw new Error(error);
+    throw Error(error);
   }
 };
 

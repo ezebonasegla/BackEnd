@@ -1,12 +1,17 @@
-import { Router } from "express";
+'use strict';
+const {
+    Router: Router
+} = require('express');
 
-import path from "path";
+const path = require("path");
 
-import passport from "passport";
+const passport = require("passport");
 
-import { checkNotAuth } from "../middlewares/auth.js";
+const {
+    checkNotAuth: checkNotAuth
+} = require('../middlewares/auth.js');
 
-export const authWebRouter = new Router();
+const authWebRouter = new Router();
 
 authWebRouter.get('/', (req, res) => {
     res.redirect('/home')
@@ -22,7 +27,9 @@ authWebRouter.get("/register", checkNotAuth, (req, res) => {
 })
 
 authWebRouter.get('/logout', (req, res) => {
-    let username = req.user.username
+    let {
+        username
+    } = req.user;
     req.logout();
     res.render('logout', {username})
 })
@@ -60,3 +67,5 @@ authWebRouter.post(
         failureRedirect: "/failRegister",
     })
 );
+
+module.exports.authWebRouter = authWebRouter;

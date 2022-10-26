@@ -1,37 +1,65 @@
-import express from "express";
-import session from "express-session";
-import passport from "passport";
-import { Strategy as LocalStrategy } from "passport-local";
-import { Strategy as TwitterStrategy } from "passport-twitter";
-import { isValidPassword } from "./utils/bcrypt.js";
+'use strict';
+const express = require("express");
+const session = require("express-session");
+const passport = require("passport");
+const {
+  Strategy: LocalStrategy
+} = require('passport-local');
+const {
+  Strategy: TwitterStrategy
+} = require('passport-twitter');
+const {
+  isValidPassword: isValidPassword,
+  createHash: createHash
+} = require('./utils/bcrypt.js');
 
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-import { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } from "./config.js";
+const {
+  fileURLToPath: fileURLToPath
+} = require('url');
+const {
+  dirname: dirname
+} = require('path');
+const {
+  TWITTER_CONSUMER_KEY: TWITTER_CONSUMER_KEY,
+  TWITTER_CONSUMER_SECRET: TWITTER_CONSUMER_SECRET
+} = require('./config.js');
 
-import { router as apiFakeProductsRoutes } from "./routes/fakeProducts.routes.js";
-import { homeRouter as homeRouter } from "./routes/home.routes.js";
-import { authWebRouter as authWebRoutes } from "./routes/auth.routes.js";
-import { infoWebRouter as infoWebRoutes } from "./routes/info.js";
+const {
+  router: apiFakeProductsRoutes
+} = require('./routes/fakeProducts.routes.js');
+const {
+  homeRouter: homeRouter
+} = require('./routes/home.routes.js');
+const {
+  authWebRouter: authWebRoutes
+} = require('./routes/auth.routes.js');
+const {
+  infoWebRouter: infoWebRoutes
+} = require('./routes/info.js');
 
-import { socketModule } from "./utils/socket.js";
+const {
+  socketModule: socketModule
+} = require('./utils/socket.js');
 
 
-import { User } from "./models/users.js";
-import redis from "redis";
-import connectRedis from 'connect-redis';
+const {
+  User: User
+} = require('./models/users.js');
+const redis = require("redis");
+const connectRedis = require('connect-redis');
 
-import http from "http";
-import { Server as ioServer } from "socket.io";
-import { createHash } from "./utils/bcrypt.js";
+const http = require("http");
+const {
+  Server: ioServer
+} = require('socket.io');
 
 const app = express();
-export const serverHttp = http.createServer(app);
+const serverHttp = http.createServer(app);
 const io = new ioServer(serverHttp);
+module.exports.serverHttp = serverHttp;
 
 //dirname
-const __filename = fileURLToPath(import.meta.url);
-export const __dirname = dirname(__filename);
+module.exports.__dirname = dirname(__filename);
 
 //middlewears--------------------------------------------------------middlewears
 app.use(express.static(__dirname + "/public"));
@@ -148,7 +176,7 @@ app.use(
     saveUninitialized: false,
     rolling: true,
     cookie: {
-      maxAge: 86400000,
+      maxAge: 86_400_000,
       httpOnly: false,
       secure: false,
     },

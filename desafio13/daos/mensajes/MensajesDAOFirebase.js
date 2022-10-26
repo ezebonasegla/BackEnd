@@ -1,13 +1,18 @@
-import {
-    dbFirebase
-} from '../../config/configDB.js';
+const {
+    dbFirebase: dbFirebase
+} = require('../../config/configDB.js');
+
+const {
+    Contenedor: Contenedor
+} = require('../../dataBase/crudFirebase/crudMensajes.js');
 
 const queryMensajes = dbFirebase.collection('mensajes');
-import { Contenedor } from '../../dataBase/crudFirebase/crudMensajes.js';
 
-export class MensajesDAOFirebase extends Contenedor {
+class MensajesDAOFirebase extends Contenedor {
     constructor() {
         super(queryMensajes);
     }
 }
+
+module.exports.MensajesDAOFirebase = MensajesDAOFirebase;
 

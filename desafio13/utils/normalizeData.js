@@ -1,21 +1,25 @@
-import { schema, normalize } from "normalizr";
+'use strict';
+const {
+  schema: schema,
+  normalize: normalize
+} = require('normalizr');
 
 //Mapeo el array de mensajes armar el objeto con el formato que queremos y eliminar el object_id de mongoose
 const depurarChat = (msj) => {
   const infodepurada = { id: "999", chats: [] };
-  msj.map((item) => {
+  for (const item of msj) {
     infodepurada.chats.push({
       id: item.id,
       author: item.author,
       text: item.text,
       date: item.date,
     });
-  });
+  }
   return infodepurada;
 };
 
 //Normalizo los chat
-export const normalizeMensajes = (msj) => {
+module.exports.normalizeMensajes = (msj) => {
   //depuro y foramteo el char el chat
   const chatDepurado = depurarChat(msj);
   //Creo las entidades

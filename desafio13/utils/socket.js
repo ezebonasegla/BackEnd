@@ -1,10 +1,10 @@
-import { chat } from "./socketChat.js";
+'use strict';
+const {
+  chat: chat
+} = require('./socketChat.js');
 
-export const socketModule = (io) => {
-  io.on("connection", async (socket) => {
-    //saludo
-    console.log(`Cliente conectado, id: ${socket.id}`);
-
+module.exports.socketModule = (io) => {
+  io.on("connection", socket => {
     chat(socket, io);
   });
 };

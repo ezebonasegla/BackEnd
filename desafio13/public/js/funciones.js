@@ -1,4 +1,5 @@
-export const desnormalizar = (messages) => {
+'use strict';
+module.exports.desnormalizar = (messages) => {
   const user = new normalizr.schema.Entity("users");
   const mensajes = new normalizr.schema.Entity("mensajes", {
     author: user,

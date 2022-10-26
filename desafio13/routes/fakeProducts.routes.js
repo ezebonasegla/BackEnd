@@ -1,6 +1,11 @@
+'use strict';
 //Requires
-import { Router } from "express";
-import * as productFakeController from "../controllers/productFake.controller.js";
-export const router = Router();
+const {
+  Router: Router
+} = require('express');
+const productFakeController = require("../controllers/productFake.controller.js");
+const router = Router();
 
 router.get("/", productFakeController.getData);
+
+module.exports.router = router;
