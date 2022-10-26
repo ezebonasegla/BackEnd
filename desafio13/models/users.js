@@ -1,6 +1,9 @@
-import mongoose from 'mongoose';
-import { Schema } from 'mongoose';
-import findOrCreate from 'mongoose-findorcreate';
+'use strict';
+const mongoose = require('mongoose');
+const {
+    Schema: Schema
+} = require('mongoose');
+const findOrCreate = require('mongoose-findorcreate');
 
 const userSchema = new Schema({
     username: {
@@ -21,4 +24,4 @@ const userSchema = new Schema({
 });
 userSchema.plugin(findOrCreate);
 
-export const User = mongoose.model('users', userSchema);
+module.exports.User = mongoose.model('users', userSchema);

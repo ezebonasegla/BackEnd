@@ -1,14 +1,16 @@
-import { serverHttp } from "./app.js";
-import _yargs from "yargs";
+'use strict';
+const {
+  serverHttp: serverHttp
+} = require('./app.js');
+const _yargs = require("yargs");
 
 const yargs = _yargs(process.argv.slice(2));
-const args = yargs.default("port", 8080).argv;
 
 //start Server
-const port = args.port;
-serverHttp.listen(port, () => {
-  console.log(`The server is listening in port: ${port}`);
-});
+const {
+  port
+} = yargs.default("port", 8080).argv;
+serverHttp.listen(port, () => {});
 
 
 /* Para probar con FOREVER, descomentar el codigo de abajo y utilizar el siguiente comando: */

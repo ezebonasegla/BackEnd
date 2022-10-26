@@ -1,16 +1,17 @@
-import * as dotenv from "dotenv";
+'use strict';
+const dotenv = require("dotenv");
 dotenv.config()
 
-export const TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY;
-export const TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
-export const MONGO_URI = process.env.MONGO_URI;
-export const FIREBASE_TYPE = process.env.FIREBASE_TYPE;
-export const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
-export const FIREBASE_PRIVATE_KEY_ID = process.env.FIREBASE_PRIVATE_KEY_ID;
-export const FIREBASE_PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY;
-export const FIREBASE_CLIENT_EMAIL = process.env.FIREBASE_CLIENT_EMAIL;
-export const FIREBASE_CLIENT_ID = process.env.FIREBASE_CLIENT_ID;
-export const FIREBASE_AUTH_URI = process.env.FIREBASE_AUTH_URI;
-export const FIREBASE_TOKEN_URI = process.env.FIREBASE_TOKEN_URI;
-export const FIREBASE_AUTH_PROVIDER_X509_CERT_URL = process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL;
-export const FIREBASE_CLIENT_X509_CERT_URL = process.env.FIREBASE_CLIENT_X509_CERT_URL;
+module.exports.TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY;
+module.exports.TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
+module.exports.MONGO_URI = process.env.MONGO_URI;
+module.exports.FIREBASE_TYPE = process.env.FIREBASE_TYPE;
+module.exports.FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
+module.exports.FIREBASE_PRIVATE_KEY_ID = process.env.FIREBASE_PRIVATE_KEY_ID;
+module.exports.FIREBASE_PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY;
+module.exports.FIREBASE_CLIENT_EMAIL = process.env.FIREBASE_CLIENT_EMAIL;
+module.exports.FIREBASE_CLIENT_ID = process.env.FIREBASE_CLIENT_ID;
+module.exports.FIREBASE_AUTH_URI = process.env.FIREBASE_AUTH_URI;
+module.exports.FIREBASE_TOKEN_URI = process.env.FIREBASE_TOKEN_URI;
+module.exports.FIREBASE_AUTH_PROVIDER_X509_CERT_URL = process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL;
+module.exports.FIREBASE_CLIENT_X509_CERT_URL = process.env.FIREBASE_CLIENT_X509_CERT_URL;

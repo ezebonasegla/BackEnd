@@ -1,4 +1,7 @@
-import { crearProductos } from "../utils/createFakeProducts.js";
+'use strict';
+const {
+  crearProductos: crearProductos
+} = require('../utils/createFakeProducts.js');
 
 let productsToSend;
 
@@ -11,7 +14,7 @@ const fakeProductGenerator = () => {
 };
 
 //Enviar porductos mocks
-export const getData = async (req, res) => {
+module.exports.getData = (req, res) => {
   fakeProductGenerator();
   res.json(productsToSend);
 };

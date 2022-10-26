@@ -1,27 +1,38 @@
-import { MONGO_URI, FIREBASE_TYPE, FIREBASE_TOKEN_URI, FIREBASE_PROJECT_ID, FIREBASE_PRIVATE_KEY_ID, FIREBASE_PRIVATE_KEY, FIREBASE_CLIENT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_AUTH_URI, FIREBASE_AUTH_PROVIDER_X509_CERT_URL, FIREBASE_CLIENT_X509_CERT_URL } from "../config.js";
+const {
+  MONGO_URI: MONGO_URI,
+  FIREBASE_TYPE: FIREBASE_TYPE,
+  FIREBASE_TOKEN_URI: FIREBASE_TOKEN_URI,
+  FIREBASE_PROJECT_ID: FIREBASE_PROJECT_ID,
+  FIREBASE_PRIVATE_KEY_ID: FIREBASE_PRIVATE_KEY_ID,
+  FIREBASE_PRIVATE_KEY: FIREBASE_PRIVATE_KEY,
+  FIREBASE_CLIENT_ID: FIREBASE_CLIENT_ID,
+  FIREBASE_CLIENT_EMAIL: FIREBASE_CLIENT_EMAIL,
+  FIREBASE_AUTH_URI: FIREBASE_AUTH_URI,
+  FIREBASE_AUTH_PROVIDER_X509_CERT_URL: FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
+  FIREBASE_CLIENT_X509_CERT_URL: FIREBASE_CLIENT_X509_CERT_URL
+} = require('../config.js');
 
 //Base de datos (mongoDB-mongoose)
 
-import { connect } from "mongoose";
-export const url = MONGO_URI;
-export async function connectMG() {
+const {
+  connect: connect
+} = require('mongoose');
+module.exports.url = MONGO_URI;
+module.exports.connectMG = async function connectMG() {
   try {
     return await connect(url, {
       useNewUrlParser: true,
     });
   } catch (e) {
-    throw new Error(e);
+    throw Error(e);
   }
-}
-
-const dbMongo = await connectMG();
-if (!dbMongo) throw "can not connect to the db";
+};
 
 //Base de datos (Firebase)
 
-import admin from "firebase-admin";
+const admin = require("firebase-admin");
 
-export const firebaseConfig = {
+const firebaseConfig = {
   type: FIREBASE_TYPE,
   project_id: FIREBASE_PROJECT_ID,
   private_key_id: FIREBASE_PRIVATE_KEY_ID,
@@ -39,4 +50,6 @@ admin.initializeApp({
   databaseURL: 'https://ecommerce-4b8f5.firebaseio.com'
 });
 
-export const dbFirebase = admin.firestore();
+module.exports.dbFirebase = admin.firestore();
+
+module.exports.firebaseConfig = firebaseConfig;

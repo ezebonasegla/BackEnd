@@ -1,0 +1,11 @@
+2022/10/25 19:49:36 [emerg] 9432#24088: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2022/10/25 19:49:52 [emerg] 24496#23704: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2022/10/25 19:49:54 [emerg] 24104#17164: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2022/10/25 19:51:28 [error] 12708#23004: *1 directory index of "D:\UTN-FRLP\Escritorio\CoderHouse\BackEnd\Desafios\nginx-1.23.2/../desafio13/public/" is forbidden, client: 127.0.0.1, server: mginx_node, request: "GET / HTTP/1.1", host: "localhost:81"
+2022/10/25 19:51:28 [error] 12708#23004: *1 CreateFile() "D:\UTN-FRLP\Escritorio\CoderHouse\BackEnd\Desafios\nginx-1.23.2/../desafio13/public/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: mginx_node, request: "GET /favicon.ico HTTP/1.1", host: "localhost:81", referrer: "http://localhost:81/"
+2022/10/25 19:51:46 [error] 12708#23004: *1 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: mginx_node, request: "GET /datos/ HTTP/1.1", upstream: "http://127.0.0.1:8082/datos/", host: "localhost:81"
+2022/10/25 19:51:48 [error] 12708#23004: *1 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: mginx_node, request: "GET /datos/ HTTP/1.1", upstream: "http://127.0.0.1:8081/datos/", host: "localhost:81"
+2022/10/26 01:43:09 [notice] 27196#25808: signal process started
+2022/10/26 01:57:42 [notice] 27536#23888: signal process started
+2022/10/26 01:57:51 [notice] 22224#28224: signal process started
+2022/10/26 01:57:51 [error] 22224#28224: CreateFile() "D:\UTN-FRLP\Escritorio\CoderHouse\BackEnd\Desafios\nginx-1.23.2/logs/nginx.pid" failed (2: The system cannot find the file specified)

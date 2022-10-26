@@ -1,6 +1,10 @@
-import { addMessage, getMessages } from "../controllers/messages.controller.js";
+'use strict';
+const {
+  addMessage: addMessage,
+  getMessages: getMessages
+} = require('../controllers/messages.controller.js');
 
-export const chat = (socket, io) => {
+module.exports.chat = (socket, io) => {
   //-----------------------------------------------Chat
   //Muestro mensajes al entrar a la chat
   //-----------------------------------------------
