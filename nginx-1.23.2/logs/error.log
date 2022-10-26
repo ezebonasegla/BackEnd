@@ -1,0 +1,6 @@
+2022/10/26 16:04:03 [notice] 25204#15368: signal process started
+2022/10/26 16:07:52 [error] 25084#25272: *2 WSARecv() failed (10054: An existing connection was forcibly closed by the remote host) while reading response header from upstream, client: 127.0.0.1, server: mginx_node, request: "GET /socket.io/?EIO=4&transport=polling&t=OGLiPJ7&sid=FnYrbv5GWqNaU7c9AAAE HTTP/1.1", upstream: "http://127.0.0.1:8080/socket.io/?EIO=4&transport=polling&t=OGLiPJ7&sid=FnYrbv5GWqNaU7c9AAAE", host: "localhost:81", referrer: "http://localhost:81/home"
+2022/10/26 16:07:57 [notice] 25744#2344: signal process started
+2022/10/26 16:10:08 [notice] 21404#10352: signal process started
+2022/10/26 16:10:27 [notice] 28244#20180: signal process started
+2022/10/26 16:10:27 [error] 28244#20180: CreateFile() "D:\UTN-FRLP\Escritorio\CoderHouse\BackEnd\Desafios\nginx-1.23.2/logs/nginx.pid" failed (2: The system cannot find the file specified)
