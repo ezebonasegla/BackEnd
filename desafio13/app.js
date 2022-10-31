@@ -1,7 +1,6 @@
 import express from "express";
 import session from "express-session";
 import passport from "passport";
-import cors from "cors";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as TwitterStrategy } from "passport-twitter";
 import { isValidPassword } from "./utils/bcrypt.js";
@@ -27,7 +26,6 @@ import { Server as ioServer } from "socket.io";
 import { createHash } from "./utils/bcrypt.js";
 
 const app = express();
-app.use(cors({origin: '*'}));
 app.enable('trust proxy');
 export const serverHttp = http.createServer(app);
 const io = new ioServer(serverHttp);
